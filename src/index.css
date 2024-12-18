@@ -1,0 +1,54 @@
+/*-------Reset of default syle of page--------*/
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+  }
+  
+  /*-------Header--------*/
+  header {
+    height: 100px;
+  }
+  
+  /*-------Main--------*/
+  main {
+    min-height: calc(100vh - 200px);
+    background-color: #b1b1b1;
+  }
+  
+  /*-------Footer--------*/
+  footer {
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    font-size: 0.8em;
+  }
+  
+  footer > div {
+    width: 80%;
+  }
+  
+  .row {
+    min-height: calc(100vh - 200px);
+  }
+  
+  .card {
+    background-color: white;
+    padding: 2px;
+    margin: 15px;
+  }
+  .card img {
+    object-fit: cover;
+    height: 150px;
+    width: 100%;
+  }
+  
+  .card-body {
+    height: 280px;
+  }
+  
+  .card-text {
+    height: 55%;
+  }
+  
