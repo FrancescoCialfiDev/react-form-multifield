@@ -35,6 +35,7 @@ export const MainComponent = ({ data }) => {
         title: "",
         image: "",
         content: "",
+        available: false,
     });
 
 
@@ -82,10 +83,17 @@ export const MainComponent = ({ data }) => {
     //     setContent(event.target.value);
     // }
     function handleFormData(e) {
+
+        const value =
+            e.target.type === "checkbox" ?
+                e.target.checked : e.target.value;
+
         setFormData((formData) => ({
             ...formData,
-            [e.target.name]: e.target.value,
+            [e.target.name]: value,
         }));
+
+        console.log(value)
     }
 
 
@@ -105,6 +113,23 @@ export const MainComponent = ({ data }) => {
                         <input name="image" type="file" className="form-control" id="imageForm" onChange={selectImage} />
                         <label htmlFor="contentForm"><span className="fw-bold">Card&apos;s Content</span></label>
                         <input name="content" type="text" value={formData.content} className="form-control" id="contentForm" placeholder="Es: Text of the content" onChange={handleFormData} />
+                        <div className="d-flex flex-column align-items-start py-2 bg-warning rounded-2 p-2 my-2 border">
+                            <label htmlFor="available" className="fw-bold">
+                                Availability</label>
+                            <div className="d-flex gap-2">
+                                <label htmlFor="available">
+                                    True</label>
+                                <input
+                                    name="available"
+                                    checked={formData.available}
+                                    onChange={handleFormData}
+                                    id="available"
+                                    type="checkbox"
+                                />
+                            </div>
+
+                        </div>
+
                     </div>
                     <button type="submit" className="btn btn-primary mt-2">Submit</button>
                 </form>
