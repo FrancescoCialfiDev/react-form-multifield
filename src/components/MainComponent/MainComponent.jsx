@@ -3,6 +3,7 @@ import { useState } from "react"
 
 // Creiamo una funzione / componente con un return che include la logica e la struttura html della pagina.
 // Utilizziamo un export inline su una costante inizializzata ad una funzione anonima. All'interno passiamo come argomento il prop passato al componente.
+
 export const MainComponent = ({ data }) => {
 
     const [reactData, setReactData] = useState(data) // Creaimo una variabile reattiva inizializzata al valore di dataCopy
@@ -27,10 +28,14 @@ export const MainComponent = ({ data }) => {
     })
 
     // State of variables - Stato reattivo delle variabili del form.
-    const [title, setTitle] = useState("");
+    // const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
-    const [content, setContent] = useState("");
-
+    // const [content, setContent] = useState("");
+    const [formData, setFormData] = useState({
+        title: "",
+        image: "",
+        content: "",
+    });
 
 
     // Submit function - Funzione che si attiva all'invio del form
@@ -42,9 +47,9 @@ export const MainComponent = ({ data }) => {
         const newCardModel = {
 
             id: 1,
-            title: title,
+            title: formData.title,
             image: image ? URL.createObjectURL(image) : "",
-            content: content,
+            content: formData.content,
             published: true,
 
         }
@@ -66,15 +71,21 @@ export const MainComponent = ({ data }) => {
     }
 
     // Function for change Input - Modifichiamo il valore della nuova card creata con i valori inseriti nel form.
-    const changeTitle = (event) => {
-        setTitle(event.target.value);
-    }
+    // const changeTitle = (event) => {
+    //     setTitle(event.target.value);
+    // }
     const selectImage = (event) => {
         const file = event.target.files[0]
         setImage(file)
     }
-    const changeContent = (event) => {
-        setContent(event.target.value);
+    // const changeContent = (event) => {
+    //     setContent(event.target.value);
+    // }
+    function handleFormData(e) {
+        setFormData((formData) => ({
+            ...formData,
+            [e.target.name]: e.target.value,
+        }));
     }
 
 
@@ -89,11 +100,11 @@ export const MainComponent = ({ data }) => {
                 <form className="p-5 bg-white rounded-3 m-4" onSubmit={submitFunction}>
                     <div className="form-group">
                         <label htmlFor="titleForm"><span className="fw-bold">Card&apos;s Name</span></label>
-                        <input type="text" value={title} className="form-control" id="titleForm" placeholder="Es: React Components" onChange={changeTitle} />
+                        <input name="title" type="text" value={formData.title} className="form-control" id="titleForm" placeholder="Es: React Components" onChange={handleFormData} />
                         <label htmlFor="imageForm"><span className="fw-bold">Card&apos;s Images</span></label>
-                        <input type="file" className="form-control" id="imageForm" onChange={selectImage} />
+                        <input name="image" type="file" className="form-control" id="imageForm" onChange={selectImage} />
                         <label htmlFor="contentForm"><span className="fw-bold">Card&apos;s Content</span></label>
-                        <input type="text" value={content} className="form-control" id="contentForm" placeholder="Es: Text of the content" onChange={changeContent} />
+                        <input name="content" type="text" value={formData.content} className="form-control" id="contentForm" placeholder="Es: Text of the content" onChange={handleFormData} />
                     </div>
                     <button type="submit" className="btn btn-primary mt-2">Submit</button>
                 </form>
