@@ -11,19 +11,20 @@ export const MainComponent = ({ data }) => {
     // Creiamo una costante per generare tutte le card dell'array e lavoriamo sulla variabile reattiva.
     const newElement = reactData.map((element) => {
         return (
-            element.published && ( // Questa condizione ci permettere di mostrare le card se la proprietà published risulta "true"
-                <div className="col-xl-3 col-md-4 col-sm-6" key={element.id}>
-                    <div className="card" id={element.id}>
-                        <img src={element.image} className="card-img-top" alt={element.title} />
-                        <div className="card-body">
-                            <h5 className="card-title">{element.title}</h5>
-                            <p className="card-text">{element.content}</p>
-                            <a href="#" className="btn btn-primary">Show Details</a>
-                            <button type="button" className="btn btn-danger mx-1" onClick={() => removeClick(element.id)}>Delete</button>
-                        </div>
+            //  element.published && ( // Questa condizione ci permettere di mostrare le card se la proprietà published risulta "true"
+            <div className="col-xl-3 col-md-4 col-sm-6" key={element.id}>
+                <div className="card" id={element.id}>
+                    <img src={element.image} className="card-img-top" alt={element.title} />
+                    <div className="card-body">
+                        <h5 className="card-title">{element.title}</h5>
+                        <p className="card-text m-0">{element.content}</p>
+                        <p className="m-0">{"Available:" + " " + String(element.published)}</p>
+                        <a href="#" className="btn btn-primary">Show Details</a>
+                        <button type="button" className="btn btn-danger mx-1" onClick={() => removeClick(element.id)}>Delete</button>
                     </div>
                 </div>
-            )
+            </div>
+            // )
         )
     })
 
@@ -93,7 +94,6 @@ export const MainComponent = ({ data }) => {
             [e.target.name]: value,
         }));
 
-        console.log(value)
     }
 
 

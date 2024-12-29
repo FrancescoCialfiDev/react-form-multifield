@@ -5,7 +5,7 @@ export const posts = [
         title: "Introduction to HTML Basics",
         image: "https://austingil.com/wp-content/uploads/HTML-Blog-Cover.svg",
         content:
-            "HTML (HyperText Markup Language) is the foundation of web development. It structures content on the web and allows developers to create semantic layouts.",
+            "HTML (HyperText Markup Language) is the foundation of web development.",
         tags: ["html", "css"],
         published: true,
     },
